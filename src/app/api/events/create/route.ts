@@ -9,7 +9,7 @@ import Event from '@/app/models/event';
 export async function POST(request: NextRequest) {
   await connectMongoDB();
   try {
-    const { bandId, date, location } = await request.json();
+    const { bandId, eventname, date, location } = await request.json();
 
     // Find the band and populate its members.
     const band = await Band.findById(bandId).populate('members');
@@ -28,6 +28,7 @@ export async function POST(request: NextRequest) {
 
     const event = await Event.create({
       band: bandId,
+      eventname,
       date,
       location,
       attendance,

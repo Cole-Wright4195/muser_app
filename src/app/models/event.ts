@@ -7,6 +7,7 @@ export interface IAttendance {
 
 export interface IEvent extends Document {
   band: mongoose.Types.ObjectId; // Reference to the Band document
+  eventname: string;
   date: Date;
   location: string;
   attendance: IAttendance[];
@@ -17,6 +18,10 @@ const eventSchema = new Schema<IEvent>({
   band: {
     type: Schema.Types.ObjectId,
     ref: 'Band',
+    required: true,
+  },
+  eventname: {
+    type: String,
     required: true,
   },
   date: {

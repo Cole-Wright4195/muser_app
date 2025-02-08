@@ -7,10 +7,10 @@ body {
  
   
   background:
-  radial-gradient(circle at top left, rgb(77, 77, 77), transparent 25%),
-  radial-gradient(circle at top right,  rgb(99, 0, 0),transparent 25%),
-  radial-gradient(circle at bottom left, rgb(99, 0, 0), transparent 25%),
-  radial-gradient(circle at bottom right, rgb(77, 77, 77), transparent 25%);
+  radial-gradient(circle at top left, rgb(255, 0, 0, 0.60), transparent 30%),
+  radial-gradient(circle at top right,  rgb(249, 144, 88, 0.60),transparent 30%),
+  radial-gradient(circle at bottom left, rgb(249, 144, 88, 0.60), transparent 30%),
+  radial-gradient(circle at bottom right, rgb(255, 0, 0, 0.60), transparent 30%);
 
   background-color: black;
 }
