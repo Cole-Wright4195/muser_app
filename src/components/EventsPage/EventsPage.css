@@ -1,0 +1,81 @@
+/* EventList.css */
+.event-list-container {
+    background-color: #1a1a1a; /* Darker background, almost black */
+    color: white;
+    font-family: sans-serif;
+    padding: 25px; /* Increased padding around the container */
+    max-width: 700px; /* Slightly wider container to match image */
+    margin: 20px auto; /* Increased top/bottom margin, centered horizontally */
+    border-radius: 10px; /* Rounded corners for the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Optional: add a subtle shadow for depth */
+  }
+  
+  .event-list-title {
+    text-align: center;
+    margin-bottom: 30px; /* Increased margin below the title */
+    font-size: 2em; /* Slightly larger title font size */
+    font-weight: bold; /* Make the title bolder */
+  }
+  
+  .event-item {
+    background-color: #2e2e2e; /* Lighter background for event items */
+    border-radius: 8px;
+    padding: 20px; /* Increased padding inside event items */
+    margin-bottom: 15px; /* Increased margin between event items */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Optional: Add a subtle background texture if you have an image */
+    /* background-image: url('path-to-your-texture-image.png');
+       background-size: cover;
+       background-blend-mode: overlay; /* or multiply, screen, etc. to blend texture with background color */
+  }
+  
+  .event-item-title {
+    font-weight: normal; /* Slightly less bold for event title */
+    font-size: 1.2em; /* Slightly larger event title font size */
+    margin-bottom: 8px; /* Margin below the event title */
+  }
+  
+  .event-item-location {
+    font-size: 0.9em; /* Slightly smaller font size for location */
+    color: #ccc; /* Lighter color for location text */
+  }
+  
+  .check-in-button {
+    background-color: #e57373; /* Reddish button color as in image */
+    color: white;
+    border: none;
+    border-radius: 8px; /* More rounded corners for buttons */
+    padding: 10px 20px; /* Adjusted padding for buttons */
+    cursor: pointer;
+    font-weight: bold; /* Bold text for buttons */
+    font-size: 1em; /* Button font size */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  .check-in-button:hover {
+    background-color: #f44336; /* Darker red on hover for check-in button */
+  }
+  
+  .event-actions-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px; /* Increased margin above action buttons */
+  }
+  
+  .action-button {
+    background-color: #f9a825; /* Orange-yellow button color for actions */
+    color: white;
+    border: none;
+    border-radius: 8px; /* More rounded corners for action buttons */
+    padding: 12px 25px; /* Adjusted padding for action buttons, slightly larger */
+    cursor: pointer;
+    font-weight: bold; /* Bold text for action buttons */
+    font-size: 1.1em; /* Action button font size, slightly larger than check-in */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  .action-button:hover {
+    background-color: #f57f17; /* Darker orange on hover for action buttons */
+  }

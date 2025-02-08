@@ -1,58 +1,77 @@
 "use client";
 import React, { useState, useEffect } from 'react';
+import './EventsPage.css';
 
 interface Event {
   _id: string;
-  title: string;
-  date: string;
-  location: string;
+  title?: string;
+  time?: string;
+  location?: string;
 }
 
-const EventsPage: React.FC = () => {
-  const [events, setEvents] = useState<Event[]>([]);  // State to hold events data
-  const [loading, setLoading] = useState<boolean>(true); // Loading state
-  const [error, setError] = useState<string | null>(null);  // Error handling state
+interface ApiResponse {
+  success: boolean;
+  events?: Event[];
+  error?: string;
+}
+
+const EventList: React.FC = () => {
+  const [events, setEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('/api/events')
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          setEvents(data.events);
-        } else {
-          setError('Failed to load events');
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch('/api/events');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
+        const data: ApiResponse = await response.json();
+        if (data.success) {
+          setEvents(data.events || []);
+        } else {
+          setError(data.error || 'Failed to fetch events');
+        }
+      } catch (e: any) {
+        setError(e.message || 'Failed to fetch events');
+      } finally {
         setLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error fetching events:', error);
-        setError('Failed to load events');
-        setLoading(false);
-      });
-  }, []); 
+      }
+    };
+
+    fetchEvents();
+  }, []);
 
   if (loading) {
-    return <div>Loading...</div>;  
+    return <div>Loading events...</div>;
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <div>Error: {error}</div>;
   }
 
   return (
-    <div className="events-container">
-      <h1>Upcoming Events</h1>
-      <div className="events-list">
-        {events.map((event) => (
-          <div key={event._id} className="event-item">
-            <h2>{event.title}</h2>
-            <p>Date: {event.date}</p>
-            <p>Location: {event.location}</p>
+    <div className="event-list-container">
+      <h2 className="event-list-title">YOUR EVENTS</h2>
+      {events.map((event) => (
+        <div key={event._id} className="event-item">
+          <div>
+            <div className="event-item-title">REHERSAL: {event.time || '8:00PM'}</div>
+            <div className="event-item-location">LOCATION: {event.location || 'ADDRESS'}</div>
           </div>
-        ))}
+          <button className="check-in-button">
+            CHECK IN
+          </button>
+        </div>
+      ))}
+      <div className="event-actions-container">
+        <button className="action-button">EDIT EVENT</button>
+        <button className="action-button">NEW EVENT</button>
+        <button className="action-button">DELETE EVENT</button>
       </div>
     </div>
   );
 };
 
-export default EventsPage;
+export default EventList;
