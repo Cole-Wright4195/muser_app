@@ -1,21 +1,30 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  height:100vh;
+ 
+  
+  background:
+  radial-gradient(circle at top left, rgb(77, 77, 77), transparent 25%),
+  radial-gradient(circle at top right,  rgb(99, 0, 0),transparent 25%),
+  radial-gradient(circle at bottom left, rgb(99, 0, 0), transparent 25%),
+  radial-gradient(circle at bottom right, rgb(77, 77, 77), transparent 25%);
+
+  background-color: black;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+html, body {
+  height: 100%; /* Ensure full height usage */
+  margin: 0; /* Remove default browser margin */
+  overflow: auto; /* Prevent scrolling beyond the container */
+}
+
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
