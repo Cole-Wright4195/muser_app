@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build:scripts": "tsc -p tsconfig.scripts.json",
+    "start:twilio": "node dist/phone.js"
   },
   "dependencies": {
     "mongodb": "^6.13.0",

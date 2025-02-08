@@ -1,0 +1,12 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+      "noEmit": false,
+      "outDir": "./dist",
+      "module": "CommonJS",
+      "moduleResolution": "node",
+      "types": ["node"],
+      "skipLibCheck": false
+    },
+    "include": ["src/app/api/messaging/phone.ts"]
+  }
