@@ -63,7 +63,6 @@ const StatusPage: React.FC = () => {
   };
 
   const handleNudge = (memberId: string) => {
-    // In a real application, you would implement the nudge/notification logic here
     console.log(`Nudge button clicked for member ID: ${memberId}`);
     alert(`Nudging ${bandMembers.find(member => member.id === memberId)?.name}`);
   };
@@ -86,8 +85,7 @@ const StatusPage: React.FC = () => {
             </div>
             <button
               className="nudge-button"
-              
-            >
+              >
               Nudge
             </button>
           </div>
