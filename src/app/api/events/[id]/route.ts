@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { NextRequest } from 'next/server';
 import connectMongoDB from '@/app/lib/mongodb';
 import Event from '@/app/models/event';
+
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   await connectMongoDB();
   try {
