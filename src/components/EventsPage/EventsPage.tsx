@@ -144,7 +144,7 @@ const EventList: React.FC = () => {
               <div className="input-group">
                 <label htmlFor="date">Date:</label>
                 <input
-                  type="date" // Consider using type="date" for date input
+                  type="date" 
                   id="date"
                   name="date"
                   value={newEventData.date}
