@@ -1,4 +1,4 @@
-/* EventList.css */
+/* EventsPage.css */
 .event-list-container {
     background-color: #1a1a1a; /* Darker background, almost black */
     color: white;
@@ -78,4 +78,104 @@
   
   .action-button:hover {
     background-color: #f57f17; /* Darker orange on hover for action buttons */
+  }
+
+  /* EventsPage.css */
+/* Add these styles to your EventsPage.css file */
+
+/* Modal Overlay */
+.event-modal-overlay {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Modal Content/Box */
+  .event-modal {
+    background-color: #333; /* Darker background for modal */
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 500px; /* Maximum width for the modal */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    color: white;
+  }
+  
+  .event-modal-title {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  .event-modal-content {
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .modal-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #555; /* Darker border for inputs */
+    background-color: #444; /* Slightly lighter input background */
+    color: white;
+    border-radius: 5px;
+    box-sizing: border-box; /* Important to include padding and border in the element's total width and height */
+  }
+  
+  .event-modal-actions {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+  }
+  
+  .modal-button {
+    background-color: #f9a825; /* Orange-yellow button color */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 10px; /* Space between buttons */
+    transition: background-color 0.3s ease;
+  }
+  
+  .modal-button:hover {
+    background-color: #f57f17; /* Darker orange on hover */
+  }
+  
+  .modal-button-primary {
+    background-color: #4CAF50; /* Example primary color for Add Event */
+  }
+  
+  .modal-button-primary:hover {
+    background-color: #45a049;
+  }
+  
+  .modal-button-secondary {
+    background-color: #e57373; /* Example secondary color for Cancel */
+  }
+  
+  .modal-button-secondary:hover {
+    background-color: #f44336;
   }

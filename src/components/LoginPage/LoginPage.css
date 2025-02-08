@@ -17,11 +17,13 @@
     font-weight: normal;
     line-height: normal;
     color: white;
+    text-align: center;
 }
 
 .subtitle {
     font-size: 1.125rem;
     margin-bottom: 1.5rem;
+    text-align: center;
 }
 
 .form {
@@ -35,12 +37,14 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    align-items: center; /* Keep this to center form elements */
 }
 
 .label {
-    font-size: 0.875rem;
-    font-weight: 600;
+    font-size: 1rem; /* **Increased font size for labels** (from 0.875rem) */
+    font-weight: bold; /* **Made labels bold** (from 600, which is semi-bold) */
     margin-bottom: 0.25rem;
+    text-align: center; /* Keep centering of labels */
 }
 
 .input {
@@ -77,6 +81,7 @@
 
 .footer {
     margin-top: 1rem;
+    text-align: center;
 }
 
 .footer-text {

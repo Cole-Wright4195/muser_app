@@ -1,0 +1,121 @@
+/* StatusPage.css */
+
+.status-page-container {
+  font-family: 'Arial', sans-serif; /* Match EventList font */
+  color: #fff; /* White text color, match EventList */
+  padding: 30px; /* Match EventList padding */
+  background-color: #000; /* Black background, match EventList */
+  max-width: 1000px; /* Adjust max-width as needed */
+  margin: 30px auto;
+  border-radius: 0; /* No rounded corners, match EventList */
+  box-shadow: none; /* Remove box-shadow, match EventList */
+  border: 1px solid #333; /* Subtle border like EventList */
+}
+
+.status-page-container h1 {
+  text-align: center;
+  margin-bottom: 40px; /* Increased margin below title, match EventList */
+  font-size: 2.2em; /* Adjust title font size, match EventList */
+  font-weight: bold;
+  letter-spacing: 0.1em; /* Letter spacing for title, match EventList */
+  text-transform: uppercase; /* Uppercase title text, match EventList */
+  color: #ddd; /* Slightly lighter title color, match EventList */
+}
+
+.band-members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Adjust minmax for card width */
+  gap: 20px;
+}
+
+.band-member-card {
+  background-color: #1a1a1a; /* Dark card background, match EventList event-item */
+  border-radius: 0; /* No rounded corners, match EventList */
+  padding: 25px; /* Match EventList event-item padding */
+  box-shadow: none; /* Remove box-shadow, match EventList */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-bottom: 2px solid #333; /* Add bottom border like EventList event-item */
+}
+
+.band-member-card:last-child {
+  border-bottom: none; /* Remove border from last card */
+}
+
+.member-info {
+  margin-bottom: 20px; /* Increased margin below member info */
+  border-bottom: 1px solid #555; /* Slightly darker border for member info separator */
+  padding-bottom: 15px;
+}
+
+.member-name {
+  font-size: 1.6em; /* Adjust name font size */
+  margin-bottom: 8px;
+  color: #fff; /* White member name, match EventList */
+  font-weight: bold; /* Make member name bold */
+}
+
+.member-role {
+  font-size: 1em;
+  color: #999; /* Grey role text, match EventList location */
+  letter-spacing: 0.05em; /* Letter spacing for role, match EventList location */
+}
+
+.member-status {
+  display: flex;
+  flex-direction: column;
+}
+
+.availability-indicator {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Increased margin below availability */
+  font-weight: bold;
+  color: #ddd; /* Lighter color for availability text */
+  text-transform: uppercase; /* Uppercase availability text */
+  font-size: 0.9em; /* Adjust font size */
+}
+
+.availability-icon {
+  display: inline-block;
+  width: 15px; /* Slightly larger icon size */
+  height: 15px;
+  border-radius: 50%;
+  margin-left: 12px; /* Increased margin for icon */
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.7); /* Add subtle shadow to icons */
+}
+
+.availability-icon.green {
+  background-color: #4CAF50; /* Green */
+}
+
+.availability-icon.yellow {
+  background-color: #ffc107; /* Yellow */
+}
+
+.availability-icon.red {
+  background-color: #f44336; /* Red */
+}
+
+.status-text {
+  font-size: 1em; /* Adjust status text font size */
+  color: #fff; /* White status text */
+  letter-spacing: 0.05em; /* Letter spacing for status */
+}
+
+.nudge-button {
+    background-color: #f9a825; /* Orange-yellow button color for actions */
+    color: white;
+    border: none;
+    border-radius: 8px; /* More rounded corners for action buttons */
+    padding: 12px 25px; /* Adjusted padding for action buttons, slightly larger */
+    cursor: pointer;
+    font-weight: bold; /* Bold text for action buttons */
+    font-size: 1.1em; /* Action button font size, slightly larger than check-in */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.nudge-button:hover {
+    background-color: #f57f17; /* Darker red on hover for check-in button */
+}
