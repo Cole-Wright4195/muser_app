@@ -70,18 +70,41 @@
 }
 
 /* Specific action button styles if needed */
-.action-button.edit { background-color: #4CAF50; }
-.action-button.edit:hover { background-color: #45a049; }
-.action-button.delete { background-color: #f44336; }
-.action-button.delete:hover { background-color: #d32f2f; }
-.action-button.view-members { background-color: #2196F3; }
-.action-button.view-members:hover { background-color: #1976D2; }
-.action-button.new-band { background-color: #FFC107; }
-.action-button.new-band:hover { background-color: #FFCA28; }
+.action-button.edit {
+    background-color: #4CAF50;
+}
+
+.action-button.edit:hover {
+    background-color: #45a049;
+}
+
+.action-button.delete {
+    background-color: #f44336;
+}
+
+.action-button.delete:hover {
+    background-color: #d32f2f;
+}
+
+.action-button.view-members {
+    background-color: #2196F3;
+}
+
+.action-button.view-members:hover {
+    background-color: #1976D2;
+}
+
+.action-button.add-band { /* Re-add New band button specific styling from CSS */
+    background-color: #FFC107;
+}
+
+.action-button.add-band:hover {
+    background-color: #FFCA28;
+}
 
 
 /* Band Members Modal Styles */
-.band-members-modal-overlay, .new-band-modal-overlay {
+.band-members-modal-overlay {
     position: fixed;
     zIndex: 2; /* Higher z-index than other elements */
     left: 0;
@@ -95,7 +118,7 @@
     align-items: center;
 }
 
-.band-members-modal, .new-band-modal {
+.band-members-modal {
     background-color: #2a2a2a; /* Darker modal background */
     color: #fff;
     padding: 30px;
@@ -105,7 +128,7 @@
     max-width: 600px; /* Adjust modal width */
 }
 
-.band-members-modal-title, .new-band-modal-title {
+.band-members-modal-title {
     text-align: center;
     margin-bottom: 25px;
     font-size: 1.8em;
@@ -115,7 +138,7 @@
     color: #ddd;
 }
 
-.band-member-list, .positions-container {
+.band-member-list {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -142,7 +165,7 @@
     font-style: italic;
 }
 
-.band-members-modal-actions, .new-band-modal-actions {
+.band-members-modal-actions {
     display: flex;
     justify-content: flex-end;
     margin-top: 30px;
@@ -169,63 +192,136 @@
     box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.8);
 }
 
-.modal-button-primary { background-color: #4CAF50; }
-.modal-button-primary:hover { background-color: #45a049; }
-.modal-button-secondary { background-color: #e57373; }
-.modal-button-secondary:hover { background-color: #f44336; }
+.modal-button-primary {
+    background-color: #4CAF50;
+}
+
+.modal-button-primary:hover {
+    background-color: #45a049;
+}
+
+.modal-button-secondary {
+    background-color: #e57373;
+}
+
+.modal-button-secondary:hover {
+    background-color: #f44336;
+}
 
 
 /* New Band Modal Form Styles */
-.new-band-form-group {
-    margin-bottom: 20px;
+.band-creation-modal-overlay {
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.new-band-label, .position-label {
+.band-creation-modal {
+    background-color: #2a2a2a;
+    color: #fff;
+    padding: 30px;
+    border-radius: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
+    width: 90%; /* Wider modal for form */
+    max-width: 700px;
+}
+
+.band-creation-modal-title {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 2em; /* Slightly larger modal title */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #ddd;
+}
+
+.band-creation-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.band-creation-form label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
     color: #eee;
 }
 
-.new-band-input, .position-name-input, .assign-member-select {
+.band-creation-form input[type="text"] {
     width: 100%;
     padding: 12px;
     background-color: #444;
     color: #fff;
     border: none;
     border-radius: 0;
-    margin-bottom: 15px;
+    margin-bottom: 20px; /* Increased margin for band name input */
     font-size: 1em;
 }
 
-.add-position-button {
-    background-color: #2196F3; /* Blue "Add Position" button */
+.band-positions-inputs-container {
+    margin-bottom: 20px;
+}
+
+.band-position-input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Spacing between position inputs */
+}
+
+.band-position-input {
+    flex-grow: 1; /* Input takes up available space */
+    padding: 12px;
+    background-color: #444;
     color: #fff;
     border: none;
     border-radius: 0;
-    padding: 10px 15px;
+    font-size: 1em;
+    margin-right: 10px; /* Spacing between input and button */
+}
+
+.add-position-button {
+    background-color: #2196F3;
+    color: #fff;
+    border: none;
+    border-radius: 50%; /* Make it a round plus button */
+    width: 35px; /* Adjust size as needed */
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     font-weight: bold;
-    text-transform: uppercase;
-    font-size: 0.9em;
-    letter-spacing: 0.08em;
+    font-size: 1.2em; /* Adjust plus sign size */
+    line-height: 1; /* Adjust line height for vertical centering */
     transition: background-color 0.3s ease;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-    margin-top: 10px;
 }
+
 
 .add-position-button:hover {
     background-color: #1976D2;
     box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.8);
 }
 
-.positions-container {
-    margin-bottom: 20px;
+
+.band-creation-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
 }
 
-.position-input-group {
-    margin-bottom: 20px;
-    padding: 15px;
-    background-color: #333;
-    border-radius: 0;
+.error-message {
+    color: #f44336; /* Red color for error message */
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-size: 0.9em;
 }
