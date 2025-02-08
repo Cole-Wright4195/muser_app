@@ -5,14 +5,20 @@ body {
     sans-serif;
   height:100vh;
  
+ 
   
   background:
+  url('/assets/flame.png'),
+  url('/assets/guitar left corner.png') no-repeat,
+  url('/assets/guitar right corner.png') no-repeat bottom right,
   radial-gradient(circle at top left, rgb(255, 0, 0, 0.60), transparent 30%),
   radial-gradient(circle at top right,  rgb(249, 144, 88, 0.60),transparent 30%),
   radial-gradient(circle at bottom left, rgb(249, 144, 88, 0.60), transparent 30%),
   radial-gradient(circle at bottom right, rgb(255, 0, 0, 0.60), transparent 30%);
 
   background-color: black;
+
+
 }
 body::-webkit-scrollbar {
   display: none;
@@ -21,6 +27,7 @@ html, body {
   height: 100%; /* Ensure full height usage */
   margin: 0; /* Remove default browser margin */
   overflow: auto; /* Prevent scrolling beyond the container */
+  
 }
 
 

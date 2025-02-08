@@ -1,5 +1,7 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
+import User from "@/app/models/user";
+
 export interface IPosition {
   position: string;
   filledBy?: mongoose.Types.ObjectId; // Reference to a User document (if filled)
@@ -45,6 +47,7 @@ const bandSchema = new Schema<IBand>({
     {
       type: Schema.Types.ObjectId,
       ref: 'User',
+      default: null,
     },
   ],
 }, { timestamps: true });

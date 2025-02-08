@@ -1,5 +1,7 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
+import User from "@/app/models/user";
+
 export interface IAttendance {
   user: mongoose.Types.ObjectId; // Reference to a User document
   response: 'Yes' | 'No' | 'Pending';
@@ -37,7 +39,7 @@ const eventSchema = new Schema<IEvent>({
       user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        required: true,
+        required: false,
       },
       response: {
         type: String,
