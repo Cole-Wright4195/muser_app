@@ -4,16 +4,15 @@ import connectMongoDB from '@/app/lib/mongodb';
 import Band from '@/app/models/band';
 
 export async function GET(request: NextRequest) {
-  await connectMongoDB();
+    await connectMongoDB();
+    const { searchParams } = new URL(request.url);
+    // Extract the managerId from the query string
+    const managerId = searchParams.get("managerId");
   
-  try {
-    // Retrieve all users from the database.
-    const bands = await Band.find({});
+    // Build the query object conditionally
+    const query = managerId ? { manager: managerId } : {};
+  
+    // Find bands with or without filtering
+    const bands = await Band.find(query);
     return NextResponse.json({ success: true, bands });
-  } catch (error: any) {
-    return NextResponse.json(
-      { success: false, error: error.message || 'Failed to retrieve bands' },
-      { status: 500 }
-    );
   }
-}
