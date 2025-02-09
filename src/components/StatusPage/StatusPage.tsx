@@ -98,18 +98,28 @@ const StatusPage: React.FC = () => {
     }
   };
 
-  const handleNudge = (memberId: string) => {
-    console.log(`Nudge button clicked for member ID: ${memberId}`);
-    alert(`Nudging ${bandMembers.find(member => member.id === memberId)?.name}`);
+  const handleNudge = async (memberId: string) => {
+    const member = bandMembers.find(member => member.id === memberId);
+    if (!member) return;
+  
+    try {
+      const response = await fetch('/api/nudge', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: memberId, bandName: "Your Band Name" })
+      });
+  
+      const data = await response.json();
+      if (data.success) {
+        alert(`Nudge sent to ${member.name}!`);
+      } else {
+        alert(`Failed to nudge ${member.name}: ${data.message}`);
+      }
+    } catch (error) {
+      console.error("Error nudging user:", error);
+    }
   };
-
-  if (loading) {
-    return <div className="status-page-container">Loading band members...</div>;
-  }
-
-  if (error) {
-    return <div className="status-page-container">Error loading band members: {error}</div>;
-  }
+  
 
   return (
     <div className="status-page-container">
