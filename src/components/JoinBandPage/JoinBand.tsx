@@ -64,7 +64,7 @@ const JoinBand: React.FC = () => {
             if (data.success) {
                 setJoinSuccess(true);
                 alert(`Successfully joined band! Band Code: ${bandCode}`);
-                // router.push('/band-management');
+                router.push('/bandmanagement');
 
             } else {
                 setJoinError(data.message || 'Failed to join band.');
