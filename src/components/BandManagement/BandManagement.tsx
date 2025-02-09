@@ -131,7 +131,8 @@ const BandManagementPage: React.FC = () => {
               name: `${userData.user.firstName} ${userData.user.lastName}`,
               role: userData.user.primaryInstrument || 'Musician', // Or determine role based on position?
               firstName: userData.user.firstName, // Add firstName
-              lastName: userData.user.lastName,   // Add lastName
+              lastName: userData.user.lastName,
+              availability: "yellow",  // Add lastName
             };
           }
         } catch (error) {

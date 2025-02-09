@@ -1,10 +1,15 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
-import User from "@/app/models/user";
-
 export interface IPosition {
   position: string;
   filledBy?: mongoose.Types.ObjectId;
+}
+
+export interface IBandMember {
+  _id: mongoose.Types.ObjectId; // User ID reference
+  firstName: string;
+  lastName: string;
+  availability?: 'green' | 'yellow' | 'red'; // Status Light (YES/NO Default Yellow)
 }
 
 export interface IBand extends Document {
@@ -12,7 +17,7 @@ export interface IBand extends Document {
   bandCode: string;
   manager: mongoose.Types.ObjectId;
   mandatoryPositions: IPosition[];
-  members: mongoose.Types.ObjectId[]; 
+  members: IBandMember[]; // Store members as objects with availability
 }
 
 const bandSchema = new Schema<IBand>({
@@ -45,9 +50,10 @@ const bandSchema = new Schema<IBand>({
   ],
   members: [
     {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
-      default: null,
+      _id: { type: Schema.Types.ObjectId, ref: 'User' },
+      firstName: { type: String, required: true },
+      lastName: { type: String, required: true },
+      availability: { type: String, enum: ['green', 'yellow', 'red'], default: 'yellow' }, // Default yellow
     },
   ],
 }, { timestamps: true });

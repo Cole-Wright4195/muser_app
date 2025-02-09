@@ -6,7 +6,7 @@ interface BandMember {
   id: string;
   name: string;
   role: string;
-  availability: 'green' | 'yellow' | 'red';
+  availability: 'yellow' | 'green' | 'red';
   status: string;
 }
 
@@ -37,52 +37,52 @@ const StatusPage: React.FC = () => {
   }, []);
 
   // Step 2: Fetch Band Members & Assign Roles
-  useEffect(() => {
+  const fetchBandMembers = async () => {
     if (!managerId) return;
 
-    const fetchBandMembers = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        // Fetch the band where managerId is the band's manager
-        const bandResponse = await fetch(`/api/bands?managerId=${managerId}`);
-        if (!bandResponse.ok) throw new Error("Failed to fetch band.");
-        const bandData = await bandResponse.json();
+    setLoading(true);
+    setError(null);
+    try {
+      const bandResponse = await fetch(`/api/bands?managerId=${managerId}`);
+      if (!bandResponse.ok) throw new Error("Failed to fetch band.");
+      const bandData = await bandResponse.json();
 
-        if (!bandData.success || bandData.bands.length === 0) {
-          throw new Error("No band found for this manager.");
-        }
-
-        const band = bandData.bands[0]; // Assuming manager only has one band
-        const members = band.members; // Already populated members array
-        const mandatoryPositions = band.mandatoryPositions; // Get role info
-
-        // Map members into the correct format for the UI
-        const formattedMembers: BandMember[] = members.map((member: any) => {
-          // Find the role for this member in `mandatoryPositions`
-          const position = mandatoryPositions.find(
-            (pos: any) => pos.filledBy && pos.filledBy._id === member._id
-          );
-
-          return {
-            id: member._id,
-            name: `${member.firstName} ${member.lastName}`,
-            role: position ? position.position : "Musician", // Assign role if found
-            availability: 'green', // Default availability
-            status: '' // Default status
-          };
-        });
-
-        setBandMembers(formattedMembers);
-      } catch (e: any) {
-        console.error("Fetch error:", e);
-        setError(e.message || 'Failed to retrieve band members');
-      } finally {
-        setLoading(false);
+      if (!bandData.success || bandData.bands.length === 0) {
+        throw new Error("No band found for this manager.");
       }
-    };
 
+      const band = bandData.bands[0]; // Assuming manager only has one band
+      const members = band.members; // Already populated members array
+      const mandatoryPositions = band.mandatoryPositions; // Get role info
+
+      // Map members into the correct format for the UI
+      const formattedMembers: BandMember[] = members.map((member: any) => {
+        const position = mandatoryPositions.find(
+          (pos: any) => pos.filledBy && pos.filledBy._id === member._id
+        );
+
+        return {
+          id: member._id,
+          name: `${member.firstName} ${member.lastName}`,
+          role: position ? position.position : "Musician", 
+          availability: member.availability || 'yellow', // Default is yellow
+          status: ''
+        };
+      });
+
+      setBandMembers(formattedMembers);
+    } catch (e: any) {
+      console.error("Fetch error:", e);
+      setError(e.message || 'Failed to retrieve band members');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchBandMembers();
+    const interval = setInterval(fetchBandMembers, 5000); // Poll every 5 seconds
+    return () => clearInterval(interval);
   }, [managerId]);
 
   const getAvailabilityIcon = (availability: 'green' | 'yellow' | 'red') => {
@@ -119,7 +119,6 @@ const StatusPage: React.FC = () => {
       console.error("Error nudging user:", error);
     }
   };
-  
 
   return (
     <div className="status-page-container">
