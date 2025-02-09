@@ -14,29 +14,66 @@ const StatusPage: React.FC = () => {
   const [bandMembers, setBandMembers] = useState<BandMember[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [managerId, setManagerId] = useState<string | null>(null);
 
+  // Step 1: Fetch Manager ID from Session
   useEffect(() => {
+    const fetchSession = async () => {
+      try {
+        const res = await fetch('/api/auth/session');
+        const data = await res.json();
+        if (data.success && data.userId) {
+          setManagerId(data.userId);
+        } else {
+          throw new Error("Failed to get manager session.");
+        }
+      } catch (error: any) {
+        console.error("Session fetch error:", error);
+        setError(error.message);
+      }
+    };
+
+    fetchSession();
+  }, []);
+
+  // Step 2: Fetch Band Members & Assign Roles
+  useEffect(() => {
+    if (!managerId) return;
+
     const fetchBandMembers = async () => {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch('/api/users');
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+        // Fetch the band where managerId is the band's manager
+        const bandResponse = await fetch(`/api/bands?managerId=${managerId}`);
+        if (!bandResponse.ok) throw new Error("Failed to fetch band.");
+        const bandData = await bandResponse.json();
+
+        if (!bandData.success || bandData.bands.length === 0) {
+          throw new Error("No band found for this manager.");
         }
-        const data = await response.json();
-        if (data.success) {
-          const mappedMembers: BandMember[] = data.users.map((user: any) => ({
-            id: user._id,
-            name: `${user.firstName} ${user.lastName}`,
-            role: user.primaryInstrument || 'Musician', 
-            availability: 'green',
-            status: '' 
-          }));
-          setBandMembers(mappedMembers);
-        } else {
-          setError(data.error || 'Failed to retrieve band members');
-        }
+
+        const band = bandData.bands[0]; // Assuming manager only has one band
+        const members = band.members; // Already populated members array
+        const mandatoryPositions = band.mandatoryPositions; // Get role info
+
+        // Map members into the correct format for the UI
+        const formattedMembers: BandMember[] = members.map((member: any) => {
+          // Find the role for this member in `mandatoryPositions`
+          const position = mandatoryPositions.find(
+            (pos: any) => pos.filledBy && pos.filledBy._id === member._id
+          );
+
+          return {
+            id: member._id,
+            name: `${member.firstName} ${member.lastName}`,
+            role: position ? position.position : "Musician", // Assign role if found
+            availability: 'green', // Default availability
+            status: '' // Default status
+          };
+        });
+
+        setBandMembers(formattedMembers);
       } catch (e: any) {
         console.error("Fetch error:", e);
         setError(e.message || 'Failed to retrieve band members');
@@ -46,7 +83,7 @@ const StatusPage: React.FC = () => {
     };
 
     fetchBandMembers();
-  }, []);
+  }, [managerId]);
 
   const getAvailabilityIcon = (availability: 'green' | 'yellow' | 'red') => {
     switch (availability) {
