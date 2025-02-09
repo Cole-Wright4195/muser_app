@@ -1,4 +1,5 @@
-import React from 'react';
+"use client";
+import React, { useState, useEffect } from 'react';
 import './StatusPage.css'; // Import CSS for styling
 
 interface BandMember {
@@ -10,44 +11,43 @@ interface BandMember {
 }
 
 const StatusPage: React.FC = () => {
-  // Dummy data for band members
-  const bandMembers: BandMember[] = [
-    {
-      id: '1',
-      name: 'John Doe',
-      role: 'Guitarist',
-      availability: 'green',
-      status: 'Practicing solos'
-    },
-    {
-      id: '2',
-      name: 'Jane Smith',
-      role: 'Vocals',
-      availability: 'yellow',
-      status: 'Warming up vocals'
-    },
-    {
-      id: '3',
-      name: 'Peter Jones',
-      role: 'Drummer',
-      availability: 'red',
-      status: 'Setting up drums, taking a while...'
-    },
-    {
-      id: '4',
-      name: 'Alice Brown',
-      role: 'Bassist',
-      availability: 'green',
-      status: 'Ready to jam'
-    },
-    {
-      id: '5',
-      name: 'Bob Williams',
-      role: 'Keyboardist',
-      availability: 'yellow',
-      status: 'Troubleshooting keyboard settings'
-    },
-  ];
+  const [bandMembers, setBandMembers] = useState<BandMember[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchBandMembers = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await fetch('/api/users');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        if (data.success) {
+          // Map the users from the API to the BandMember interface
+          const mappedMembers: BandMember[] = data.users.map((user: any) => ({
+            id: user._id,
+            name: `${user.firstName} ${user.lastName}`,
+            role: user.primaryInstrument || 'Musician', // Default role if primaryInstrument is not set
+            availability: 'green', // Default availability
+            status: '' // Default status
+          }));
+          setBandMembers(mappedMembers);
+        } else {
+          setError(data.error || 'Failed to retrieve band members');
+        }
+      } catch (e: any) {
+        console.error("Fetch error:", e);
+        setError(e.message || 'Failed to retrieve band members');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBandMembers();
+  }, []);
 
   const getAvailabilityIcon = (availability: 'green' | 'yellow' | 'red') => {
     switch (availability) {
@@ -67,6 +67,14 @@ const StatusPage: React.FC = () => {
     alert(`Nudging ${bandMembers.find(member => member.id === memberId)?.name}`);
   };
 
+  if (loading) {
+    return <div className="status-page-container">Loading band members...</div>;
+  }
+
+  if (error) {
+    return <div className="status-page-container">Error loading band members: {error}</div>;
+  }
+
   return (
     <div className="status-page-container">
       <h1>Band Status</h1>
@@ -85,7 +93,8 @@ const StatusPage: React.FC = () => {
             </div>
             <button
               className="nudge-button"
-              >
+              onClick={() => handleNudge(member.id)} // Added onClick handler for nudge
+            >
               Nudge
             </button>
           </div>

@@ -184,25 +184,38 @@ const BandManagementPage: React.FC = () => {
   // -- Render Helpers -----------------------------------------------------
   const renderBandMembersPopup = () => {
     if (!isViewMembersModalOpen || !viewingBandMembers) return null;
+  
     return (
       <div className="band-members-modal-overlay">
         <div className="band-members-modal">
-          <h3 className="band-members-modal-title">Band Members: {viewingBandMembers.bandName}</h3>
+          <h3 className="band-members-modal-title">
+            Band Members: {viewingBandMembers.bandName}
+          </h3>
           <ul className="band-member-list">
             {viewingBandMembers.mandatoryPositions.map((position) => (
               <li key={position._id} className="band-member-item">
                 <span className="band-member-position">{position.position}:</span>
-                <span className="band-member-name">Vacant</span>
+                <span className="band-member-name">
+                  {position.filledBy && typeof position.filledBy === 'object'
+                    ? `${position.filledBy.firstName} ${position.filledBy.lastName}`
+                    : 'Vacant'}
+                </span>
               </li>
             ))}
           </ul>
           <div className="band-members-modal-actions">
-            <button className="modal-button modal-button-secondary" onClick={closeViewMembersModal}>Close</button>
+            <button
+              className="modal-button modal-button-secondary"
+              onClick={closeViewMembersModal}
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
     );
   };
+  
 
   const renderBandCreationPopup = () => {
     if (!isViewBandCreationOpen) return null;
