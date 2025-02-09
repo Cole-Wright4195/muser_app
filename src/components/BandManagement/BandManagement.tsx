@@ -79,6 +79,8 @@ const BandManagementPage: React.FC = () => {
     fetchBands();
   }, [managerId]);
 
+  
+
   // -- Handlers ----------------------------------------------------------
   const handleEditBand = (bandId: string) => {
     console.log(`Edit band ${bandId}`);
@@ -196,7 +198,7 @@ const BandManagementPage: React.FC = () => {
               <li key={position._id} className="band-member-item">
                 <span className="band-member-position">{position.position}:</span>
                 <span className="band-member-name">
-                  {position.filledBy && typeof position.filledBy === 'object'
+                  {position.filledBy
                     ? `${position.filledBy.firstName} ${position.filledBy.lastName}`
                     : 'Vacant'}
                 </span>
@@ -215,6 +217,7 @@ const BandManagementPage: React.FC = () => {
       </div>
     );
   };
+  
   
 
   const renderBandCreationPopup = () => {
