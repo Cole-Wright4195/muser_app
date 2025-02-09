@@ -7,12 +7,14 @@ export interface BandMember {
   id: string;
   name: string;
   role: string;
+  firstName: string; // Add firstName
+  lastName: string;  // Add lastName
 }
 
 export interface BandPosition {
   id: string;
   name: string;
-  member?: BandMember | null;
+  member: BandMember | null; // Updated to BandMember | null
 }
 
 export interface Band {
@@ -20,7 +22,11 @@ export interface Band {
   bandName: string; // API expects bandName
   bandCode: string; // Returned from API
   manager: string; // Manager's ID as returned from API
-  mandatoryPositions: { _id: string; position: string }[]; // API response
+  mandatoryPositions: {
+    _id: string;
+    position: string;
+    filledBy?: string | null; // filledBy is user ID string or null from API
+  }[]; // API response - filledBy is string (User ID) or null
   members: string[]; // Array of User IDs
   positions?: BandPosition[]; // Optional: extra positions info for display
 }
@@ -38,9 +44,10 @@ const BandManagementPage: React.FC = () => {
   // State for band creation form: positions and error message
   const [bandPositions, setBandPositions] = useState<string[]>(['']);
   const [bandCreationError, setBandCreationError] = useState<string | null>(null);
+  // State to store fetched user data for band members in the modal
+  const [bandMemberDetails, setBandMemberDetails] = useState<{ [userId: string]: BandMember }>({});
 
   // -- Fetch Session Info ------------------------------------------------
-  // Retrieve the manager's ID from the session endpoint
   useEffect(() => {
     async function fetchSession() {
       try {
@@ -59,12 +66,10 @@ const BandManagementPage: React.FC = () => {
   }, []);
 
   // -- Fetch Bands -------------------------------------------------------
-  // Once the managerId is available, fetch the bands for that manager
   useEffect(() => {
     if (!managerId) return;
     async function fetchBands() {
       try {
-        // Assume the backend supports filtering by managerId via query string
         const res = await fetch(`/api/bands?managerId=${managerId}`);
         const data = await res.json();
         if (data.success) {
@@ -102,15 +107,43 @@ const BandManagementPage: React.FC = () => {
     }
   };
 
-  const handleViewBandMembers = (band: Band) => {
+  const handleViewBandMembers = async (band: Band) => {
     console.log(`View members of band ${band._id}`);
     setViewingBandMembers(band);
     setIsViewMembersModalOpen(true);
+
+    // Fetch user details for each filled position
+    const memberDetails: { [userId: string]: BandMember } = {};
+    for (const position of band.mandatoryPositions) {
+      if (position.filledBy !== null) {
+        try {
+          const res = await fetch(`/api/users/${position._id}`);
+          if (!res.ok) {
+            console.error(`Failed to fetch user details for ID: ${position._id}`);
+            continue; // Skip to the next user if fetch fails
+          }
+          const userData = await res.json();
+          if (userData.success && userData.user !== null) {
+            memberDetails[userData._id] = {
+              id: userData.user._id,
+              name: `${userData.user.firstName} ${userData.user.lastName}`,
+              role: userData.user.primaryInstrument || 'Musician', // Or determine role based on position?
+              firstName: userData.user.firstName, // Add firstName
+              lastName: userData.user.lastName,   // Add lastName
+            };
+          }
+        } catch (error) {
+          console.error('Error fetching user details:', error);
+        }
+      }
+    }
+    setBandMemberDetails(memberDetails);
   };
 
   const closeViewMembersModal = () => {
     setIsViewMembersModalOpen(false);
     setViewingBandMembers(null);
+    setBandMemberDetails({}); // Clear user details when modal closes
   };
 
   const handleViewBandCreation = () => {
@@ -184,7 +217,7 @@ const BandManagementPage: React.FC = () => {
   // -- Render Helpers -----------------------------------------------------
   const renderBandMembersPopup = () => {
     if (!isViewMembersModalOpen || !viewingBandMembers) return null;
-  
+
     return (
       <div className="band-members-modal-overlay">
         <div className="band-members-modal">
@@ -192,16 +225,22 @@ const BandManagementPage: React.FC = () => {
             Band Members: {viewingBandMembers.bandName}
           </h3>
           <ul className="band-member-list">
-            {viewingBandMembers.mandatoryPositions.map((position) => (
-              <li key={position._id} className="band-member-item">
-                <span className="band-member-position">{position.position}:</span>
-                <span className="band-member-name">
-                  {position.filledBy && typeof position.filledBy === 'object'
-                    ? `${position.filledBy.firstName} ${position.filledBy.lastName}`
-                    : 'Vacant'}
-                </span>
-              </li>
-            ))}
+            {viewingBandMembers.mandatoryPositions.map((position) => {
+              let memberName = 'Vacant';
+              if (position.filledBy) {
+                const memberDetail = bandMemberDetails[position.filledBy];
+                memberName = memberDetail ? memberDetail.name : 'Loading...'; // Show loading if details are being fetched
+              }
+
+              return (
+                <li key={position._id} className="band-member-item">
+                  <span className="band-member-position">{position.position}:</span>
+                  <span className="band-member-name">
+                    {memberName}
+                  </span>
+                </li>
+              );
+            })}
           </ul>
           <div className="band-members-modal-actions">
             <button
@@ -215,7 +254,7 @@ const BandManagementPage: React.FC = () => {
       </div>
     );
   };
-  
+
 
   const renderBandCreationPopup = () => {
     if (!isViewBandCreationOpen) return null;
