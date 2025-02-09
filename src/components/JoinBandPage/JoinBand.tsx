@@ -12,31 +12,21 @@ const JoinBand: React.FC = () => {
     const router = useRouter();
 
     useEffect(() => {
-        const getUserIdFromToken = async () => {
-            const token = await getCookie('token');
-            if (token) {
-                try {
-                    const payloadBase64 = token.split('.')[1];
-                    if (payloadBase64) {
-                        const payloadJsonString = atob(payloadBase64);
-                        const payload = JSON.parse(payloadJsonString);
-                        setUserId(payload.id);
-                    } else {
-                        console.error("JWT payload not found in token.");
-                        setJoinError("Could not extract user ID from token.");
-                    }
-                } catch (error) {
-                    console.error("Error decoding JWT token:", error);
-                    setJoinError("Invalid token or could not decode user ID from cookie.");
-                }
+        async function fetchSession() {
+          try {
+            const res = await fetch('/api/auth/session');
+            const data = await res.json();
+            if (data.success && data.userId) {
+              setUserId(data.userId);
             } else {
-                console.error("JWT token cookie not found.");
-                setJoinError("Authentication token missing. Please log in.");
+              console.error('Session retrieval failed:', data.message);
             }
-        };
-
-        getUserIdFromToken();
-    }, []);
+          } catch (error) {
+            console.error('Error fetching session:', error);
+          }
+        }
+        fetchSession();
+      }, []);
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
