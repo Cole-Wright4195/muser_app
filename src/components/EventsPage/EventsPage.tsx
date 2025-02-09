@@ -219,7 +219,7 @@ const EventList: React.FC = () => {
               <div className="input-group">
                 <label htmlFor="date">Date:</label>
                 <input
-                  type="date"
+                  type="date" 
                   id="date"
                   name="date"
                   value={newEventData.date}
