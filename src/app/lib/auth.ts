@@ -1,11 +1,9 @@
-// lib/auth.ts
 import jwt from 'jsonwebtoken';
 import { IUser } from '@/app/models/user';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret_here';
 
 export const generateToken = (user: IUser): string => {
-  // You can include only the fields you need (e.g., id and email)
   const payload = {
     id: user._id,
     email: user.email,

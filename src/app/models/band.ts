@@ -4,15 +4,15 @@ import User from "@/app/models/user";
 
 export interface IPosition {
   position: string;
-  filledBy?: mongoose.Types.ObjectId; // Reference to a User document (if filled)
+  filledBy?: mongoose.Types.ObjectId;
 }
 
 export interface IBand extends Document {
   bandName: string;
   bandCode: string;
-  manager: mongoose.Types.ObjectId; // Reference to the User who is the manager
+  manager: mongoose.Types.ObjectId;
   mandatoryPositions: IPosition[];
-  members: mongoose.Types.ObjectId[]; // Array of User references
+  members: mongoose.Types.ObjectId[]; 
 }
 
 const bandSchema = new Schema<IBand>({
