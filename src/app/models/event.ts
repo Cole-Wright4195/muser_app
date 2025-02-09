@@ -3,12 +3,12 @@ import mongoose, { Document, Schema } from 'mongoose';
 import User from "@/app/models/user";
 
 export interface IAttendance {
-  user: mongoose.Types.ObjectId; // Reference to a User document
+  user: mongoose.Types.ObjectId; 
   response: 'Yes' | 'No' | 'Pending';
 }
 
 export interface IEvent extends Document {
-  band: mongoose.Types.ObjectId; // Reference to the Band document
+  band: mongoose.Types.ObjectId;
   eventname: string;
   date: Date;
   location: string;

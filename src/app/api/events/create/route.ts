@@ -11,7 +11,6 @@ export async function POST(request: NextRequest) {
   try {
     const { bandId, eventname, date, location } = await request.json();
 
-    // Find the band and populate its members.
     const band = await Band.findById(bandId).populate('members');
     if (!band) {
       return NextResponse.json(
@@ -20,7 +19,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Prepare the attendance list from band members.
     const attendance = band.members.map((member: any) => ({
       user: member._id,
       response: 'Pending',
