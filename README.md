@@ -10,6 +10,8 @@ Problems that your team ran into and how your team overcame them: Where do we st
 APIS: ngrok and twillio, were used to operate the app's SMS system. nGrok to create a public tunnel for our local hosted site so the TWILIO API could recieve its messages.
 We of course used the react/next.js framework to build our application, as well as basic CSS styling on top of our component files.
 
+IMPORTANT NOTE: This project has some rather important UI functionality incomplete and unless you know the ins and outs of the backend API structure you will not be able to navigate the software very well at this time. 
+
 
 
 
