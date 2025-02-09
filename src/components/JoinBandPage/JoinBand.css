@@ -1,0 +1,111 @@
+/* JoinBand.css - Updated CSS for card appearance and theme consistency */
+
+.join-band-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px; /* Increased padding around the whole page section */
+    background-color: #000;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    max-width: 700px;
+    margin: 30px auto; /* Increased margin top and bottom for better spacing */
+}
+
+.title {
+    font-size: 2.8em; /* Larger title, consistent with "YOUR EVENTS" title */
+    margin-bottom: 15px; /* Slightly reduced margin below title */
+    color: #ddd;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.15em; /* Increased letter spacing for title */
+}
+
+.subtitle {
+    font-size: 1.2em; /* Slightly larger subtitle */
+    color: #bbb;
+    margin-bottom: 30px; /* Increased margin below subtitle */
+    text-align: center;
+    font-style: italic;
+}
+
+.join-band-card { /* Card container style */
+    background-color: #1a1a1a; /* Darker card background */
+    color: #fff;
+    border-radius: 0; /* Keep sharp corners for cards, or use a value like 4px */
+    padding: 35px; /* Increased padding within the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* Stronger shadow for card depth */
+    width: 100%; /* Card takes full width of parent container */
+}
+
+.join-band-card-title {
+    font-size: 2em; /* Title within the card */
+    font-weight: bold;
+    margin-bottom: 25px; /* Margin below card title */
+    text-align: center;
+    color: #ddd;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.join-band-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.join-band-form label {
+    display: block;
+    margin-bottom: 10px; /* Increased margin below label */
+    font-weight: bold;
+    color: #eee;
+    font-size: 1.1em; /* Slightly larger label font */
+}
+
+.join-band-form input[type="text"] {
+    width: 100%;
+    padding: 14px; /* Increased padding for input */
+    margin-bottom: 25px; /* Increased margin below input */
+    border: 1px solid #555;
+    border-radius: 0;
+    background-color: #444;
+    color: #fff;
+    font-size: 1.1em; /* Slightly larger input font */
+    box-sizing: border-box;
+}
+
+.join-band-form-actions {
+    display: flex;
+    justify-content: center; /* Center the button in the form actions */
+    margin-top: 30px; /* Increased margin above button */
+}
+
+.join-band-button {
+    background-color: #f9a825; /* Yellow/Orange button */
+    color: #fff;
+    border: none;
+    border-radius: 0;
+    padding: 14px 25px; /* Larger padding for button */
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.1em; /* Slightly larger button text */
+    letter-spacing: 0.1em; /* More letter spacing for button text */
+    transition: background-color 0.3s ease;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+    margin-left: 0; /* Remove any left margin on the button */
+    margin-right: 0; /* Remove any right margin on the button */
+}
+
+.join-band-button:hover {
+    background-color: #f08c00;
+    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.8);
+}
+
+.error-message {
+    color: #f44336; /* Red color for error messages */
+    margin-top: 15px; /* Margin above error message */
+    margin-bottom: 20px; /* Margin below error message */
+    font-size: 1em; /* Slightly larger error message font */
+    text-align: center; /* Center error message text */
+    font-weight: bold; /* Make error message bold */
+}

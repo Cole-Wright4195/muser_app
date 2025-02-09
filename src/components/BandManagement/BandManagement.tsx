@@ -145,11 +145,9 @@ const BandManagementPage: React.FC = () => {
 
             const data: { success: boolean, band: Band } = await response.json();
             if (data.success) {
-                setBands([...bands, data.band]); // Add the newly created band to the state
+                setBands([...bands, data.band]);
                 setIsViewBandCreationOpen(false);
                 alert(`Band "${bandNameInput}" created successfully!`);
-                // Optionally re-fetch band list to ensure up-to-date data
-                // fetchBands();
             } else {
                 setBandCreationError('Band creation failed');
             }
