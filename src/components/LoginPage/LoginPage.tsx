@@ -34,8 +34,19 @@ export default function LoginPage() {
 
       const data = await res.json();
       if (data.success) {
-
-        router.push('/eventspage');
+        try {
+          const res = await fetch('/api/auth/session');
+          const data = await res.json();
+          const person = await fetch(`/api/users/${data.userId}`);
+          const personData = await person.json();
+          if (personData.user.band !== null) {
+            router.push('/eventspage');
+          } else {
+            router.push('/joinband');
+          }
+        } catch (error) {
+          console.error('Error fetching session:', error);
+        }
       } else {
         setError(data.message || 'Invalid credentials');
       }
