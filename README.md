@@ -1,36 +1,15 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Team Names: Cole Wright, Turjoy Paul, Kareem Coulibaly
 
-## Getting Started
+Purpose: We came up with this idea because it seemed to fit the theme of hacks this year and we felt 
+as though it was very unique and no other groups would do something like it. We wanted to come up with something that accomplishes goals that some other organizational app like excel or google calendar couldn't do whilst still being simple and on theme by skewing it towards the giging/band scene. Essentially, MUSER allows users to make accounts as a manager or a band member (backend, frontend isnt working in this regard) managers can create bands, add events, and manage/view the status of their band members via the status page, The status page can update a band member's status by sending an SMS text message, the member can response YES or NO when asked about their availability for an event, based on this response MUSER will update the availability status of the member and the manager will see it update in real time.
 
-First, run the development server:
+Tools Utilizied: we built muser using a full stack of, CSS, React/next.js, and MogoDB. We used Twilio and ngrok to send and receive SMS messages. ngrok to publicly host the site so Twilio could use a web-hook to receive messages. We also used AI assistance such as COPILOT and GPT for helpful bugfixing and Schema Mapping.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Problems that your team ran into and how your team overcame them: Where do we start, there was seemingly a million challenges along the way, the learning curve of using an API such as Twilio, the intense react implementation, the construction of countless MongoDB schemas with endless possibilities. Bugs that made no sense! The largest challenge was getting the availability light to change dynamically based on the user's response to the text message.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+APIS: ngrok and twillio, were used to operate the app's SMS system. nGrok to create a public tunnel for our local hosted site so the TWILIO API could recieve its messages.
+We of course used the react/next.js framework to build our application, as well as basic CSS styling on top of our component files.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
