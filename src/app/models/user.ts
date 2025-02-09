@@ -8,7 +8,7 @@ export interface IUser extends Document {
   primaryInstrument: string;
   backupInstrument?: string;
   isManager: boolean;
-  band?: mongoose.Types.ObjectId; // Reference to a Band document
+  band?: mongoose.Types.ObjectId; 
   password: string;
 }
 

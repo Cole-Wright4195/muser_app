@@ -1,47 +1,45 @@
-/* JoinBand.css - Updated CSS for card appearance and theme consistency */
-
 .join-band-page {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 30px; /* Increased padding around the whole page section */
+    padding: 30px;
     background-color: #000;
     color: #fff;
     font-family: 'Arial', sans-serif;
     max-width: 700px;
-    margin: 30px auto; /* Increased margin top and bottom for better spacing */
+    margin: 30px auto;
 }
 
 .title {
-    font-size: 2.8em; /* Larger title, consistent with "YOUR EVENTS" title */
-    margin-bottom: 15px; /* Slightly reduced margin below title */
+    font-size: 2.8em;
+    margin-bottom: 15px;
     color: #ddd;
     text-align: center;
     text-transform: uppercase;
-    letter-spacing: 0.15em; /* Increased letter spacing for title */
+    letter-spacing: 0.15em;
 }
 
 .subtitle {
-    font-size: 1.2em; /* Slightly larger subtitle */
+    font-size: 1.2em;
     color: #bbb;
-    margin-bottom: 30px; /* Increased margin below subtitle */
+    margin-bottom: 30px;
     text-align: center;
     font-style: italic;
 }
 
-.join-band-card { /* Card container style */
-    background-color: #1a1a1a; /* Darker card background */
+.join-band-card {
+    background-color: #1a1a1a;
     color: #fff;
-    border-radius: 0; /* Keep sharp corners for cards, or use a value like 4px */
-    padding: 35px; /* Increased padding within the card */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* Stronger shadow for card depth */
-    width: 100%; /* Card takes full width of parent container */
+    border-radius: 0;
+    padding: 35px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    width: 100%;
 }
 
 .join-band-card-title {
-    font-size: 2em; /* Title within the card */
+    font-size: 2em;
     font-weight: bold;
-    margin-bottom: 25px; /* Margin below card title */
+    margin-bottom: 25px;
     text-align: center;
     color: #ddd;
     text-transform: uppercase;
@@ -55,45 +53,45 @@
 
 .join-band-form label {
     display: block;
-    margin-bottom: 10px; /* Increased margin below label */
+    margin-bottom: 10px;
     font-weight: bold;
     color: #eee;
-    font-size: 1.1em; /* Slightly larger label font */
+    font-size: 1.1em;
 }
 
 .join-band-form input[type="text"] {
     width: 100%;
-    padding: 14px; /* Increased padding for input */
-    margin-bottom: 25px; /* Increased margin below input */
+    padding: 14px;
+    margin-bottom: 25px;
     border: 1px solid #555;
     border-radius: 0;
     background-color: #444;
     color: #fff;
-    font-size: 1.1em; /* Slightly larger input font */
+    font-size: 1.1em;
     box-sizing: border-box;
 }
 
 .join-band-form-actions {
     display: flex;
-    justify-content: center; /* Center the button in the form actions */
-    margin-top: 30px; /* Increased margin above button */
+    justify-content: center;
+    margin-top: 30px;
 }
 
 .join-band-button {
-    background-color: #f9a825; /* Yellow/Orange button */
+    background-color: #f9a825;
     color: #fff;
     border: none;
     border-radius: 0;
-    padding: 14px 25px; /* Larger padding for button */
+    padding: 14px 25px;
     cursor: pointer;
     font-weight: bold;
     text-transform: uppercase;
-    font-size: 1.1em; /* Slightly larger button text */
-    letter-spacing: 0.1em; /* More letter spacing for button text */
+    font-size: 1.1em;
+    letter-spacing: 0.1em;
     transition: background-color 0.3s ease;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-    margin-left: 0; /* Remove any left margin on the button */
-    margin-right: 0; /* Remove any right margin on the button */
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .join-band-button:hover {
@@ -102,10 +100,10 @@
 }
 
 .error-message {
-    color: #f44336; /* Red color for error messages */
-    margin-top: 15px; /* Margin above error message */
-    margin-bottom: 20px; /* Margin below error message */
-    font-size: 1em; /* Slightly larger error message font */
-    text-align: center; /* Center error message text */
-    font-weight: bold; /* Make error message bold */
+    color: #f44336;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    font-size: 1em;
+    text-align: center;
+    font-weight: bold;
 }

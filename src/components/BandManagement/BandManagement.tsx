@@ -84,6 +84,8 @@ const BandManagementPage: React.FC = () => {
     fetchBands();
   }, [managerId]);
 
+  
+
   // -- Handlers ----------------------------------------------------------
   const handleEditBand = (bandId: string) => {
     console.log(`Edit band ${bandId}`);
@@ -225,22 +227,16 @@ const BandManagementPage: React.FC = () => {
             Band Members: {viewingBandMembers.bandName}
           </h3>
           <ul className="band-member-list">
-            {viewingBandMembers.mandatoryPositions.map((position) => {
-              let memberName = 'Vacant';
-              if (position.filledBy) {
-                const memberDetail = bandMemberDetails[position.filledBy];
-                memberName = memberDetail ? memberDetail.name : 'Loading...'; // Show loading if details are being fetched
-              }
-
-              return (
-                <li key={position._id} className="band-member-item">
-                  <span className="band-member-position">{position.position}:</span>
-                  <span className="band-member-name">
-                    {memberName}
-                  </span>
-                </li>
-              );
-            })}
+            {viewingBandMembers.mandatoryPositions.map((position) => (
+              <li key={position._id} className="band-member-item">
+                <span className="band-member-position">{position.position}:</span>
+                <span className="band-member-name">
+                  {position.filledBy
+                    ? `${position.filledBy.firstName} ${position.filledBy.lastName}`
+                    : 'Vacant'}
+                </span>
+              </li>
+            ))}
           </ul>
           <div className="band-members-modal-actions">
             <button
@@ -254,7 +250,8 @@ const BandManagementPage: React.FC = () => {
       </div>
     );
   };
-
+  
+  
 
   const renderBandCreationPopup = () => {
     if (!isViewBandCreationOpen) return null;

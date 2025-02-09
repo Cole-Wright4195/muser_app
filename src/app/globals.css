@@ -24,9 +24,9 @@ body::-webkit-scrollbar {
   display: none;
 }
 html, body {
-  height: 100%; /* Ensure full height usage */
-  margin: 0; /* Remove default browser margin */
-  overflow: auto; /* Prevent scrolling beyond the container */
+  height: 100%; 
+  margin: 0; 
+  overflow: auto; 
   
 }
 

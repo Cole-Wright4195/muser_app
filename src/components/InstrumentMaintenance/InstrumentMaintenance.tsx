@@ -1,5 +1,5 @@
 import React from 'react';
-import './InstrumentMaintenance.css'; // Import CSS for styling
+import './InstrumentMaintenance.css'; 
 
 interface Instrument {
   name: string;
@@ -13,7 +13,6 @@ interface BandMemberEquipment {
 }
 
 const EquipmentManagementPage: React.FC = () => {
-  // Dummy data for band members and their equipment
   const bandEquipmentData: BandMemberEquipment[] = [
     {
       id: '1',

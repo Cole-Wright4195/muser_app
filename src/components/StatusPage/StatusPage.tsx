@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import './StatusPage.css'; // Import CSS for styling
+import './StatusPage.css'; 
 
 interface BandMember {
   id: string;
@@ -26,13 +26,12 @@ const StatusPage: React.FC = () => {
         }
         const data = await response.json();
         if (data.success) {
-          // Map the users from the API to the BandMember interface
           const mappedMembers: BandMember[] = data.users.map((user: any) => ({
             id: user._id,
             name: `${user.firstName} ${user.lastName}`,
-            role: user.primaryInstrument || 'Musician', // Default role if primaryInstrument is not set
-            availability: 'green', // Default availability
-            status: '' // Default status
+            role: user.primaryInstrument || 'Musician', 
+            availability: 'green',
+            status: '' 
           }));
           setBandMembers(mappedMembers);
         } else {
@@ -93,7 +92,7 @@ const StatusPage: React.FC = () => {
             </div>
             <button
               className="nudge-button"
-              onClick={() => handleNudge(member.id)} // Added onClick handler for nudge
+              onClick={() => handleNudge(member.id)} 
             >
               Nudge
             </button>

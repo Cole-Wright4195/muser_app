@@ -1,4 +1,3 @@
-/* LoginPage.css */
 
 .login-page {
     display: flex;
@@ -37,14 +36,14 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    align-items: center; /* Keep this to center form elements */
+    align-items: center; 
 }
 
 .label {
-    font-size: 1rem; /* **Increased font size for labels** (from 0.875rem) */
-    font-weight: bold; /* **Made labels bold** (from 600, which is semi-bold) */
+    font-size: 1rem;
+    font-weight: bold; 
     margin-bottom: 0.25rem;
-    text-align: center; /* Keep centering of labels */
+    text-align: center;
 }
 
 .input {

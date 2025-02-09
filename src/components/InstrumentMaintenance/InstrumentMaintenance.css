@@ -1,103 +1,101 @@
-/* EquipmentManagementPage.css */
-
 .equipment-management-container {
-    font-family: 'Arial', sans-serif; /* Consistent font */
-    color: #fff; /* White text color, like StatusPage */
-    padding: 30px;
-    background-color: #000; /* Black background, like StatusPage */
-    max-width: 1100px; /* Slightly wider to accommodate equipment lists */
-    margin: 30px auto;
-    border-radius: 0; /* No rounded corners */
-    box-shadow: none; /* No shadow */
-    border: 1px solid #333; /* Subtle border */
-  }
-  
-  .equipment-management-container h1 {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 2.2em; /* Title size, consistent with StatusPage */
-    font-weight: bold;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #ddd; /* Lighter title color */
-  }
-  
-  .band-equipment-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Wider cards */
-    gap: 25px; /* Increased gap between cards */
-  }
-  
-  .band-equipment-card {
-    background-color: #1a1a1a; /* Dark card background */
-    border-radius: 0; /* No rounded corners */
-    padding: 25px; /* Increased padding */
-    box-shadow: none; /* No shadow */
-    border-bottom: 2px solid #333; /* Bottom border */
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .member-equipment-name {
-    font-size: 1.8em; /* Larger member name */
-    margin-bottom: 20px;
-    color: #fff; /* White name */
-    font-weight: bold;
-    text-align: center; /* Centered member name */
-    border-bottom: 1px solid #555; /* Separator line */
-    padding-bottom: 15px;
-  }
-  
-  .instrument-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .instrument-item {
-    background-color: #2e2e2e; /* Slightly lighter item background */
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 0; /* No rounded corners for list items */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .instrument-info {
-    flex-grow: 1; /* Allow info to take available space */
-  }
-  
-  .instrument-name {
-    font-size: 1.2em; /* Instrument name size */
-    color: #fff; /* White instrument name */
-    margin-bottom: 5px;
-  }
-  
-  .instrument-status {
-    font-size: 1em;
-    color: #999; /* Grey status text */
-    letter-spacing: 0.05em;
-  }
-  
-  .maintenance-button {
-    background-color: #f9a825; /* Yellow/Orange button */
-    color: #fff; /* White button text */
-    border: none;
-    border-radius: 0; /* Square buttons */
-    padding: 10px 20px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 0.9em; /* Button font size */
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    transition: background-color 0.3s ease;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-    align-self: flex-start; /* Align button to start in item */
-    margin-left: 20px; /* Spacing from instrument info */
-  }
-  
-  .maintenance-button:hover {
-    background-color: #f08c00; /* Darker orange on hover */
-    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.8);
-  }
+  font-family: 'Arial', sans-serif;
+  color: #fff;
+  padding: 30px;
+  background-color: #000;
+  max-width: 1100px;
+  margin: 30px auto;
+  border-radius: 0;
+  box-shadow: none;
+  border: 1px solid #333;
+}
+
+.equipment-management-container h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2.2em;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ddd;
+}
+
+.band-equipment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 25px;
+}
+
+.band-equipment-card {
+  background-color: #1a1a1a;
+  border-radius: 0;
+  padding: 25px;
+  box-shadow: none;
+  border-bottom: 2px solid #333;
+  display: flex;
+  flex-direction: column;
+}
+
+.member-equipment-name {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid #555;
+  padding-bottom: 15px;
+}
+
+.instrument-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.instrument-item {
+  background-color: #2e2e2e;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.instrument-info {
+  flex-grow: 1;
+}
+
+.instrument-name {
+  font-size: 1.2em;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.instrument-status {
+  font-size: 1em;
+  color: #999;
+  letter-spacing: 0.05em;
+}
+
+.maintenance-button {
+  background-color: #f9a825;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: background-color 0.3s ease;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+  align-self: flex-start;
+  margin-left: 20px;
+}
+
+.maintenance-button:hover {
+  background-color: #f08c00;
+  box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.8);
+}

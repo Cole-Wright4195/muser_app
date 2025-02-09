@@ -15,15 +15,13 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  // Submit handler for the login form
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
-    // Collect form data using FormData API.
     const formData = new FormData(e.currentTarget);
-    // We are using 'email' instead of 'username'
+
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
 
@@ -36,8 +34,7 @@ export default function LoginPage() {
 
       const data = await res.json();
       if (data.success) {
-        // If login is successful, the token is set as an HTTP-only cookie.
-        // You may store additional session info in state or simply redirect.
+
         router.push('/eventspage');
       } else {
         setError(data.message || 'Invalid credentials');
