@@ -5,10 +5,9 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import './LoginPage.css';
 
-// Import the font with desired options
 const julius = Julius_Sans_One({
   subsets: ['latin'],
-  weight: '400', // default weight for Julius Sans One
+  weight: '400', 
 });
 
 export default function LoginPage() {
